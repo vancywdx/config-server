@@ -1,0 +1,25 @@
+#配置调用product-service服务采用的负载均衡策略
+PRODUCT-SERVICE:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+    OkToRetryOnAllOperations: true # 是否对所有操作都进行重试
+    MaxAutoRetriesNextServer: 2 # 切换实例的重试次数
+
+#打开熔断器
+feign:
+  hystrix:
+    enabled: true
+
+#暴露所有的健康监控节点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  rabbitmq:
+    host: 192.168.134.140
+    virtual-host: /wdx
+    username: wdx
+    password: 123456
